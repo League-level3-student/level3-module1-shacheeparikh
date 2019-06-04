@@ -1,12 +1,12 @@
 package _05_String_Integer_Pair;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 class StringIntPairTest {
 
-	@Test
+	@org.junit.Test
 	void testPutAndGet() {
 		StringIntegerPair sip = new StringIntegerPair();
 		sip.put("ONE", 1);
@@ -20,7 +20,7 @@ class StringIntPairTest {
 		assertEquals(4, sip.get("FOUR"));
 	}
 	
-	@Test
+	@org.junit.Test
 	void testContains() {
 		StringIntegerPair sip = new StringIntegerPair();
 		sip.put("ONE", 1);

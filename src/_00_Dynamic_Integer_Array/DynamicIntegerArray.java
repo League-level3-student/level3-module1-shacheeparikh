@@ -2,11 +2,12 @@ package _00_Dynamic_Integer_Array;
 
 public class DynamicIntegerArray {
 	//1. Create a private int array. Don't initialize it.
-
+private int arr[];
 	
 	public DynamicIntegerArray() {
 		//2. Initialize the int array to have 0 elements. 
 		//   This will prevent a null pointer exception
+		arr = new int[0];
 	
 	}
 	
@@ -14,7 +15,7 @@ public class DynamicIntegerArray {
 	public void add(int v) {
 		//A. create and initialize a new int array to be one 
 		//   element longer than the member array
-		
+	int nweArr[]= new int[arr.length+1];
 		//B. set the last element of your new array to 
 		//   the value passed into the method
 		

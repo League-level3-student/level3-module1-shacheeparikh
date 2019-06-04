@@ -7,18 +7,40 @@ import javax.swing.JOptionPane;
 
 public class _05_LongChipCompetition {
 	/**
-	 * The Beatles are eating lunch and playing a game to see who has the longest
-	 * chip. (In England, french fries are called "chips".) * Find the Beatle with
-	 * the longest chip. You may not edit the Chip or Beatle classes. Make sure to
-	 * initialize The Beatles before you start your search. *
+	 * The Beatles are eating lunch and playing a game to see who has the
+	 * longest chip. (In England, french fries are called "chips".) * Find the
+	 * Beatle with the longest chip. You may not edit the Chip or Beatle
+	 * classes. Make sure to initialize The Beatles before you start your
+	 * search. *
 	 **/
 	private ArrayList<Beatle> theBeatles = new ArrayList<Beatle>();
 
 	public static void main(String[] args) {
 		_05_LongChipCompetition lcc = new _05_LongChipCompetition();
-		
+		lcc.initializeBeatles();
+
+		String longestChipBeattle = " ";
+		double longest = 0.0;
+
+		longest = lcc.getTheBand().get(0).getChips().get(0).getLength();
+
+		for (int i = 0; i < lcc.getTheBand().size(); i++) {
+			
+			for (int j = 1; j < lcc.getTheBand().get(i).getChips().size(); j++) {
+				System.out.println(lcc.getTheBand().get(i).getChips().get(j).getLength());
+
+				if (lcc.getTheBand().get(i).getChips().get(j).getLength() > longest) {
+					longest = lcc.getTheBand().get(i).getChips().get(j).getLength();
+					longestChipBeattle = lcc.getTheBand().get(i).getName();
+
+				}
+			}
+
+		}
+		System.out.println("longest chip beattle " + longestChipBeattle + "  " + longest);
+
 	}
-	
+
 	private void initializeBeatles() {
 		Beatle george = new Beatle("George");
 		Beatle john = new Beatle("John");
@@ -29,8 +51,8 @@ public class _05_LongChipCompetition {
 		theBeatles.add(paul);
 		theBeatles.add(ringo);
 	}
-	
-	public ArrayList<Beatle> getTheBand(){
+
+	public ArrayList<Beatle> getTheBand() {
 		return theBeatles;
 	}
 }

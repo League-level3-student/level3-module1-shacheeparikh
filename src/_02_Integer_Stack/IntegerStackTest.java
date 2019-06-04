@@ -1,13 +1,13 @@
 package _02_Integer_Stack;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class IntegerStackTest {
+public class IntegerStackTest {
 
 	@Test
-	void testPushAndPop() {
+	public void testPushAndPop() {
 		IntegerStack is = new IntegerStack();
 		is.push(0);
 		is.push(1);
@@ -23,7 +23,7 @@ class IntegerStackTest {
 	}
 	
 	@Test
-	void testClear() {
+	public void testClear() {
 		IntegerStack is = new IntegerStack();
 		is.push(0);
 		is.push(1);
