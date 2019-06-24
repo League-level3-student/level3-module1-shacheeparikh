@@ -4,10 +4,14 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-class DynamicIntArrayTest {
+public class DynamicIntArrayTest {
+	
+	public DynamicIntArrayTest(){
+		
+	}
 
 	@Test
-	void testAddAndGet() {
+	public void testAddAndGet() {
 		DynamicIntegerArray dia = new DynamicIntegerArray();
 		dia.add(1);
 		dia.add(2);
@@ -19,7 +23,7 @@ class DynamicIntArrayTest {
 	}
 	
 	@Test
-	void testSet() {
+	public void testSet() {
 		DynamicIntegerArray dia = new DynamicIntegerArray();
 		dia.add(1);
 		dia.add(2);
@@ -33,7 +37,7 @@ class DynamicIntArrayTest {
 	}
 	
 	@Test
-	void testInsert() {
+	public void testInsert() {
 		DynamicIntegerArray dia = new DynamicIntegerArray();
 		dia.add(1);
 		dia.add(2);
@@ -48,7 +52,7 @@ class DynamicIntArrayTest {
 	}
 	
 	@Test
-	void testRemove() {
+	public void testRemove() {
 		DynamicIntegerArray dia = new DynamicIntegerArray();
 		dia.add(1);
 		dia.add(2);
@@ -62,7 +66,7 @@ class DynamicIntArrayTest {
 	}
 
 	@Test
-	void testSizeAndClear() {
+public void testSizeAndClear() {
 		DynamicIntegerArray dia = new DynamicIntegerArray();
 		dia.add(1);
 		dia.add(2);

@@ -22,14 +22,17 @@ public class _03_TestMatchingBrackets {
 	private boolean doBracketsMatch(String b) {
 		Stack<String> brackets = new Stack<String>();
 		
-		
-		String openBracket="{";
-		String closeBracket="}";
-		
-		
-		
-		
-		return false;
+			for(int i=0; i < b.length(); i++){
+				if(b.charAt(i) =='{'){
+					brackets.push("{");
+				}
+				else if(b.charAt(i)=='}' && !brackets.isEmpty()){
+					brackets.pop();
+					
+				}
+			
+			}
+		return brackets.isEmpty();		
 	}
 
 }

@@ -1,5 +1,6 @@
 package _03_IntroToStacks;
 
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Stack;
@@ -39,7 +40,7 @@ public class _02_TextUndoRedo implements KeyListener {
 	void createUI() {
 
 		JFrame frame = new JFrame();
-		frame.setSize(400, 400);
+		frame.setPreferredSize(new Dimension(400,400));
 		frame.setVisible(true);
 		JPanel panel = new JPanel();
 		// panel.setVisible(true);

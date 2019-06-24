@@ -1,6 +1,7 @@
 package _01_IntroToArrayLists;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Copyright The League of Amazing Programmers 2013-2017 Level 3 Two ArrayList
@@ -24,6 +25,8 @@ public class _04_RemovingStuffFromArrayLists {
 				type = "dirt";
 			}
 		}
+		// ArrayList<Integer> stuffIndexToRemove = new ArrayList<Integer>();
+
 		ArrayList<Stuff> stuffIFoundInTheYard = new ArrayList<Stuff>();
 		stuffIFoundInTheYard.add(new Worm());
 		stuffIFoundInTheYard.add(new Dirt());
@@ -35,16 +38,25 @@ public class _04_RemovingStuffFromArrayLists {
 		System.out.println(stuffIFoundInTheYard.size());
 
 		/* TODO 1: Clean out the dirt but keep the delicious worms. */
-		for(int i=0; i < stuffIFoundInTheYard.size();i++){
-			
-			if(stuffIFoundInTheYard.get(i).type.equals("dirt")){
-				stuffIFoundInTheYard.remove(i);
+		for (int i = stuffIFoundInTheYard.size()-1 ; i >=0; i--) {
+
+			if (stuffIFoundInTheYard.get(i).type.equals("dirt")) {
+
+				Stuff s = stuffIFoundInTheYard.remove(i);
+
+				System.out.println(s.type);
+
 			}
-				
 		}
-	
 		
 		
+		/*for (Iterator iterator = stuffIFoundInTheYard.iterator(); iterator.hasNext();) {
+			// Stuff stuff = (Stuff) iterator.next();
+			if (stuffIFoundInTheYard.get(i).type.equals("dirt")) {
+				iterator.remove();
+			}
+		}*/
+
 		System.out.println(stuffIFoundInTheYard.size()); // should be 2
 
 		ArrayList<Character> truth = new ArrayList<Character>();
@@ -81,14 +93,13 @@ public class _04_RemovingStuffFromArrayLists {
 		truth.add('#');
 		/* TODO 2: Remove the hash symbols and print out the truth. */
 
-		for(int i=0; i < truth.size(); i ++){
-			if(truth.get(i).equals('#')){
+		for (int i = 0; i < truth.size(); i++) {
+			if (truth.get(i).equals('#')) {
 				truth.remove(i);
 			}
-			
 		}
-		
+
 		System.out.println(truth);
-		
+
 	}
 }
