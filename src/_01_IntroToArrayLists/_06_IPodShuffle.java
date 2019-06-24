@@ -51,9 +51,9 @@ public class _06_IPodShuffle implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		int r = new Random().nextInt(4);
-for(int i=0; i <4;i++){
+
 	songs.get(r).play();
-}
+
 		
 	}
 }
