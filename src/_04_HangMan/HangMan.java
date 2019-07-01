@@ -16,7 +16,7 @@ import _02_Integer_Stack.Taco;
 public class HangMan implements KeyListener {
 	static JLabel label = new JLabel();
 	static JLabel lifelabel = new JLabel();
-	int life;
+	int life = 15;
 	static JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
 	static Stack<String> s = new Stack<String>();
@@ -35,21 +35,23 @@ public class HangMan implements KeyListener {
 			s.push(word);
 		}
 
-		h.UI();
 		frame.setVisible(true);
-		frame.add(label);
-		frame.setPreferredSize(new Dimension(500, 500));
+        frame.add(label);
+		frame.setPreferredSize(new Dimension(300, 100));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		h.UI();
 
 	}
 
 	void UI() {
+		
+	
 		Utilities u = new Utilities();
 
 		frame.addKeyListener(this);
 
-		life = 10;
+		life = 15;
 		if (!s.isEmpty()) {
 			word = s.pop();
 			System.out.println(word);
@@ -62,7 +64,9 @@ public class HangMan implements KeyListener {
 					w = w + ('_' + "");
 				}
 			}
+			// frame.add(label);
 			label.setText(w);
+			//frame.pack();
 		}
 	}
 
@@ -74,23 +78,28 @@ public class HangMan implements KeyListener {
 		for (int i = 0; i < word.length(); i++) {
 			if (word.charAt(i) == e.getKeyChar()) {
 
-				w = w.substring(0, i) + word.charAt(i) + w.substring(i + 1);
+				// if i is the last word
+				if (i == word.length() - 1) {
+					w = w.substring(0, i) + word.charAt(i);
+				} else {
+					w = w.substring(0, i) + word.charAt(i) + w.substring(i + 1);
+				}
 
 				System.out.println("hi");
 				life++;
-			} else {
-				System.out.println("wrong try");
 			}
 			if (w.equals(word)) {
+
+				label.setText(word);
 				JOptionPane.showMessageDialog(null, "you solved  the word....");
 				next = JOptionPane.showConfirmDialog(null, "do you want a next word?");
 				if (next == 0) {
+					label.setText("");
 					HangMan h = new HangMan();
 					h.UI();
 					// label.setText(w);
 				} else {
 					System.exit(0);
-
 				}
 			}
 		}
