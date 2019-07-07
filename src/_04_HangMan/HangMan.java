@@ -14,106 +14,71 @@ import javax.swing.JPanel;
 import _02_Integer_Stack.Taco;
 
 public class HangMan implements KeyListener {
-	static JLabel label = new JLabel();
-	static JLabel lifelabel = new JLabel();
-	int life = 15;
-	static JFrame frame = new JFrame();
-	JPanel panel = new JPanel();
+	static JFrame f = new JFrame("Hangmam");
+	static JLabel l = new JLabel();
+	String display ="";
+	int life = 10;
 	static Stack<String> s = new Stack<String>();
-	static String word = "";
-	String w = "";
+	static String w = "";
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 
-		String number = JOptionPane.showInputDialog("how many words u want to guess?");
-		int n = Integer.parseInt(number);
-		HangMan h = new HangMan();
+	 String display = "";
+		String number = JOptionPane.showInputDialog("how many words do u want in hangman between 1 to 266?");
+		int num = Integer.parseInt(number);
 		Utilities u = new Utilities();
 
-		for (int i = 0; i < n; i++) {
-			word = u.readRandomLineFromFile("dictionary.txt");
+		for (int i = 0; i < num; i++) {
+
+			String word = (u.readRandomLineFromFile("dictionary.txt"));
+			if (s.contains(word)) {
+				word = (u.readRandomLineFromFile("dictionary.txt"));
+			}
+
 			s.push(word);
 		}
 
-		frame.setVisible(true);
-        frame.add(label);
-		frame.setPreferredSize(new Dimension(300, 100));
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		h.UI();
+		f.setVisible(true);
+
+		f.setPreferredSize(new Dimension(200, 200));
+
+		for (int i = 0; i < w.length(); i++) {
+			display = display + "_";
+		}
+
+		l.setText(display);
+
+		f.add(l);
+		f.pack();
 
 	}
 
-	void UI() {
-		
-	
-		Utilities u = new Utilities();
+	void addkey() {
+		l.addKeyListener(this);
+		w = s.pop();
 
-		frame.addKeyListener(this);
-
-		life = 15;
-		if (!s.isEmpty()) {
-			word = s.pop();
-			System.out.println(word);
-
-			for (int i = 0; i < word.length(); i++) {
-				if (word.charAt(i) == 'a' || word.charAt(i) == 'e' || word.charAt(i) == 'i' || word.charAt(i) == 'o'
-						|| word.charAt(i) == 'u') {
-					w = w + (word.charAt(i) + "");
-				} else {
-					w = w + ('_' + "");
-				}
-			}
-			// frame.add(label);
-			label.setText(w);
-			//frame.pack();
-		}
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		int next = 1;
-		life--;
-		for (int i = 0; i < word.length(); i++) {
-			if (word.charAt(i) == e.getKeyChar()) {
 
-				// if i is the last word
-				if (i == word.length() - 1) {
-					w = w.substring(0, i) + word.charAt(i);
-				} else {
-					w = w.substring(0, i) + word.charAt(i) + w.substring(i + 1);
-				}
-
-				System.out.println("hi");
-				life++;
-			}
-			if (w.equals(word)) {
-
-				label.setText(word);
-				JOptionPane.showMessageDialog(null, "you solved  the word....");
-				next = JOptionPane.showConfirmDialog(null, "do you want a next word?");
-				if (next == 0) {
-					label.setText("");
-					HangMan h = new HangMan();
-					h.UI();
-					// label.setText(w);
-				} else {
-					System.exit(0);
-				}
-			}
-		}
-		if (life == 0) {
-			JOptionPane.showMessageDialog(null, "GAME OVER....");
-			JOptionPane.showMessageDialog(null, "the word was " + word);
-			// ask if they want to play again? give other word.
-		}
-		label.setText(w);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+
+		String guess = JOptionPane.showInputDialog("guess  a letter");
+
+		for (int i = 0; i < w.length(); i++) {
+			if (guess.equals(w.charAt(i))) {
+				display = display.substring(0, i) + guess + display.substring(i + 1);
+				l.setText(display);
+			} else {
+				life--;
+			}
+		}
 
 	}
 
@@ -122,4 +87,5 @@ public class HangMan implements KeyListener {
 		// TODO Auto-generated method stub
 
 	}
+
 }
