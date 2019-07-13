@@ -16,14 +16,16 @@ import _02_Integer_Stack.Taco;
 public class HangMan implements KeyListener {
 	static JFrame f = new JFrame("Hangmam");
 	static JLabel l = new JLabel();
-	String display ="";
-	int life = 10;
+	static JPanel p = new JPanel();
+	static String display = "";
+	 static int life ;
 	static Stack<String> s = new Stack<String>();
 	static String w = "";
+	static JLabel lifeL = new JLabel();
 
 	public static void main(String[] args) {
 
-	 String display = "";
+		
 		String number = JOptionPane.showInputDialog("how many words do u want in hangman between 1 to 266?");
 		int num = Integer.parseInt(number);
 		Utilities u = new Utilities();
@@ -37,7 +39,7 @@ public class HangMan implements KeyListener {
 
 			s.push(word);
 		}
-
+		w = s.pop();
 		f.setVisible(true);
 
 		f.setPreferredSize(new Dimension(200, 200));
@@ -47,15 +49,21 @@ public class HangMan implements KeyListener {
 		}
 
 		l.setText(display);
-
-		f.add(l);
+		HangMan h = new HangMan();
+		h.addkey();
+		
+		//lifeL.setText("no. of lives : "+life);
+		p.add(l);
+		p.add(lifeL);
+		f.add(p);
 		f.pack();
 
+		
 	}
 
 	void addkey() {
-		l.addKeyListener(this);
-		w = s.pop();
+		life=10;
+		f.addKeyListener(this);
 
 	}
 
@@ -69,10 +77,11 @@ public class HangMan implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 
-		String guess = JOptionPane.showInputDialog("guess  a letter");
+		char guess = e.getKeyChar();
+		// JOptionPane.showInputDialog("guess a letter");
 
 		for (int i = 0; i < w.length(); i++) {
-			if (guess.equals(w.charAt(i))) {
+			if (guess == (w.charAt(i))) {
 				display = display.substring(0, i) + guess + display.substring(i + 1);
 				l.setText(display);
 			} else {
@@ -80,12 +89,35 @@ public class HangMan implements KeyListener {
 			}
 		}
 
+		if (life == 0) {
+			JOptionPane.showMessageDialog(null, "game over");
+		}
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
+		if (l.getText().equals(w)) {
+			life=10;
+			JOptionPane.showMessageDialog(null, " great! you solved the word! ");
+			if(!s.isEmpty()){
+				JOptionPane.showMessageDialog(null, "here's the new word");
+			}
+			else{
+				JOptionPane.showMessageDialog(null, " good job! you are out of words. play the game again ");
+				System.exit(0);
+			
+			}
+			w = s.pop();
+            display="";
+			for (int i = 0; i < w.length(); i++) {
+				display = display + "_";
+			}
 
+			l.setText(display);			
+			
+		}
 	}
 
 }
